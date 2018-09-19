@@ -68,7 +68,7 @@ arrayWeights <- function(object, design = NULL, weights = NULL, method="genebyge
 			}
 			y <- as.vector(M[i,])
 			obs <- is.finite(y) & w!=0
-			if (sum(obs) > 1) {
+			if (sum(obs, na.rm=TRUE) > 1) {
 				if(sum(obs) == narrays)	{
 					X <- design
 				} else {  # remove missing/infinite values
@@ -152,7 +152,7 @@ arrayWeights <- function(object, design = NULL, weights = NULL, method="genebyge
 
 				y <- as.vector(M[i,])
 				obs <- is.finite(y) & w!=0
-				n <- sum(obs)
+				n <- sum(obs, na.rm=TRUE)
 				if (n > 0) {
 					if(n == narrays)	{
 						X <- design
